@@ -16,7 +16,7 @@ const MessageSection = () => {
     });
 
     gsap.to(firstMsgSplit.words, {
-      color: "#faeade",
+      color: "#ece8e1",
       ease: "power1.in",
       stagger: 1,
       scrollTrigger: {
@@ -27,7 +27,7 @@ const MessageSection = () => {
       },
     });
     gsap.to(secMsgSplit.words, {
-      color: "#faeade",
+      color: "#ece8e1",
       ease: "power1.in",
       stagger: 1,
       scrollTrigger: {
@@ -71,7 +71,7 @@ const MessageSection = () => {
       <div className="container mx-auto flex-center py-28 relative">
         <div className="w-full h-full">
           <div className="msg-wrapper">
-            <h1 className="first-message">Stir up your fearless past and</h1>
+            <h1 className="first-message">Hide as anything. Become the room.</h1>
 
             <div
               style={{
@@ -79,22 +79,21 @@ const MessageSection = () => {
               }}
               className="msg-text-scroll"
             >
-              <div className="bg-light-brown md:pb-5 pb-3 px-5">
-                <h2 className="text-red-brown">Fuel Up</h2>
+              <div className="bg-[#2a1e18] md:pb-5 pb-3 px-5">
+                <h2 className="text-[#a89070]">In Plain Sight</h2>
               </div>
             </div>
 
             <h1 className="second-message">
-              your future with every gulp of Perfect Protein
+              But your voice betrays you every time.
             </h1>
           </div>
 
           <div className="flex-center md:mt-20 mt-10">
             <div className="max-w-md px-10 flex-center overflow-hidden">
               <p>
-                Rev up your rebel spirit and feed the adventure of life with
-                SPYLT, where you’re one chug away from epic nostalgia and
-                fearless fun.
+                Use your real microphone to impersonate any prop in the room —
+                but every sound you make could reveal the truth.
               </p>
             </div>
           </div>

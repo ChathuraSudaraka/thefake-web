@@ -47,38 +47,38 @@ const BenefitSection = () => {
       <div className="container mx-auto pt-20">
         <div className="col-center">
           <p>
-            Unlock the Advantages: <br />
-            Explore the Key Benefits of Choosing SPYLT
+            The power behind the fear: <br />
+            What makes The Fake worth hiding for.
           </p>
 
           <div className="mt-20 col-center">
             <ClipPathTitle
-              title={"Shelf stable"}
-              color={"#faeade"}
-              bg={"#c88e64"}
+              title={"Proximity Voice"}
+              color={"#ece8e1"}
+              bg={"#2a1e18"}
               className={"first-title"}
-              borderColor={"#222123"}
+              borderColor={"#0d0b0c"}
             />
             <ClipPathTitle
-              title={"Protein + Caffeine"}
-              color={"#222123"}
-              bg={"#faeade"}
+              title={"Prop Physics"}
+              color={"#0d0b0c"}
+              bg={"#ece8e1"}
               className={"second-title"}
-              borderColor={"#222123"}
+              borderColor={"#0d0b0c"}
             />
             <ClipPathTitle
-              title={"Infinitely recyclable"}
-              color={"#faeade"}
-              bg={"#7F3B2D"}
+              title={"Coop Hunters"}
+              color={"#ece8e1"}
+              bg={"#3d1a10"}
               className={"third-title"}
-              borderColor={"#222123"}
+              borderColor={"#0d0b0c"}
             />
             <ClipPathTitle
-              title={"Lactose free"}
-              color={"#2E2D2F"}
-              bg={"#FED775"}
+              title={"Unreal Engine 5"}
+              color={"#ece8e1"}
+              bg={"#4a3425"}
               className={"fourth-title"}
-              borderColor={"#222123"}
+              borderColor={"#0d0b0c"}
             />
           </div>
 

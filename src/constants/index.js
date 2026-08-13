@@ -1,44 +1,56 @@
 const base = import.meta.env.BASE_URL;
 
-const flavorlists = [
+const modelists = [
   {
-    name: "Chocolate Milk",
+    name: "Ghost",
     color: "brown",
     rotation: "md:rotate-[-8deg] rotate-0",
+    desc: "Hide as a prop. Mimic its sound.",
+    tag: "Stealth",
   },
   {
-    name: "Stawberry Milk",
+    name: "Hunter",
     color: "red",
     rotation: "md:rotate-[8deg] rotate-0",
+    desc: "Track ghosts by ear. Shoot on sight.",
+    tag: "Action",
   },
   {
-    name: "Cookies & Cream",
+    name: "Co-op Hunt",
     color: "blue",
     rotation: "md:rotate-[-8deg] rotate-0",
+    desc: "Team up. Cover every exit.",
+    tag: "Team",
   },
   {
-    name: "Peanut Butter Chocolate",
-    color: "orange",
-    rotation: "md:rotate-[8deg] rotate-0",
-  },
-  {
-    name: "Vanilla Milkshake",
-    color: "white",
-    rotation: "md:rotate-[-8deg] rotate-0",
-  },
-  {
-    name: "Max Chocolate Milk",
+    name: "Blackout",
     color: "black",
     rotation: "md:rotate-[8deg] rotate-0",
+    desc: "Lights off. Trust only your ears.",
+    tag: "Survival",
+  },
+  {
+    name: "Overtime",
+    color: "orange",
+    rotation: "md:rotate-[-8deg] rotate-0",
+    desc: "Last ghost standing wins.",
+    tag: "Endgame",
+  },
+  {
+    name: "Spectator",
+    color: "white",
+    rotation: "md:rotate-[8deg] rotate-0",
+    desc: "Watch. Whisper. Survive vicariously.",
+    tag: "Observer",
   },
 ];
 
-const nutrientLists = [
-  { label: "Potassium", amount: "245mg" },
-  { label: "Calcium", amount: "500mg" },
-  { label: "Vitamin A", amount: "176mcg" },
-  { label: "Vitamin D", amount: "5mcg" },
-  { label: "Iron", amount: "1mg" },
+const mechanicsList = [
+  { label: "Players", amount: "2–16" },
+  { label: "Maps", amount: "8+" },
+  { label: "Weapons", amount: "12+" },
+  { label: "Modes", amount: "6" },
+  { label: "Props", amount: "200+" },
 ];
 
 const cards = [
@@ -91,4 +103,4 @@ const cards = [
   },
 ];
 
-export { flavorlists, nutrientLists, cards };
+export { modelists, mechanicsList, cards };

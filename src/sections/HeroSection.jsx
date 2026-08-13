@@ -69,12 +69,12 @@ const HeroSection = () => {
             {isMobile && (
               <img
                 src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
-                className="absolute bottom-40 size-full object-cover"
+                className="absolute bottom-40 size-full object-cover opacity-40"
               />
             )}
             <img
               src={`${import.meta.env.BASE_URL}images/hero-img.png`}
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto opacity-50"
             />
           </>
         ) : (
@@ -86,9 +86,13 @@ const HeroSection = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
+
+        {/* Dark overlay to unify video with dark palette */}
+        <div className="absolute inset-0 bg-[#0f0d0e] opacity-55 z-[1]" />
+
         <div className="hero-content opacity-0">
           <div className="overflow-hidden">
-            <h1 className="hero-title">Freaking Delicious</h1>
+            <h1 className="hero-title">The Fake</h1>
           </div>
           <div
             style={{
@@ -97,17 +101,17 @@ const HeroSection = () => {
             className="hero-text-scroll"
           >
             <div className="hero-subtitle">
-              <h1>Protein + Caffine </h1>
+              <h1>Prop Hunt · Horror · Coop</h1>
             </div>
           </div>
 
           <h2>
-            Live life to the fullest  with SPYLT: Shatter boredom and embrace
-            your inner kid with every deliciously smooth chug.
+            Ghosts hide as everyday objects. Hunters track by sound. Nothing is
+            what it seems.
           </h2>
 
           <div className="hero-button">
-            <p>Chug a SPYLT</p>
+            <p>Wishlist on Steam</p>
           </div>
         </div>
       </div>
