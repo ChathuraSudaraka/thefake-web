@@ -156,7 +156,7 @@ body::-webkit-scrollbar {
     @apply min-h-dvh 2xl:h-[120dvh] overflow-hidden relative;
 
     .big-img {
-      @apply w-full absolute 2xl:h-full md:h-2/3 h-1/2 left-0 bottom-0 object-bottom 2xl:object-contain object-cover opacity-[0.06];
+      @apply w-full absolute 2xl:h-full md:h-2/3 h-1/2 left-0 bottom-0 object-bottom 2xl:object-contain object-cover opacity-25;
     }
 
     .nutrition-title {
@@ -262,8 +262,8 @@ body::-webkit-scrollbar {
 }
 
 .nutrition-section {
-  background-color: #0f0d0e;
-  background-image: radial-gradient(circle, #1c1614, #0a0809);
+  background-color: #1a1210;
+  background-image: radial-gradient(circle at 60% 40%, #2a1e18, #120e0c);
 }
 
 .spin-circle {
