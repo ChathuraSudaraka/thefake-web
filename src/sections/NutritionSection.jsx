@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
-import WaveDivider from "../components/WaveDivider";
 
 const NutritionSection = () => {
   const isMobile = useMediaQuery({
@@ -67,7 +66,11 @@ const NutritionSection = () => {
 
   return (
     <section className="nutrition-section">
-      <WaveDivider topColor="#0f0d0e" bottomColor="#1a1412" />
+      <img
+        src={`${import.meta.env.BASE_URL}images/slider-dip.png`}
+        alt=""
+        className="w-full object-cover"
+      />
 
       <img
         src={`${import.meta.env.BASE_URL}images/big-img.png`}

@@ -1,5 +1,4 @@
 import { useMediaQuery } from "react-responsive";
-import WaveDivider from "../components/WaveDivider";
 
 const FooterSection = () => {
   const isMobile = useMediaQuery({
@@ -8,7 +7,11 @@ const FooterSection = () => {
 
   return (
     <section className="footer-section">
-      <WaveDivider topColor="#0f0d0e" bottomColor="#0d0b0c" />
+      <img
+        src={`${import.meta.env.BASE_URL}images/footer-dip.png`}
+        alt=""
+        className="w-full object-cover -translate-y-1"
+      />
 
       <div className="relative md:pt-[20vh] pt-[10vh] pb-10">
         <div className="overflow-hidden z-10">
