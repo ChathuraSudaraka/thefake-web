@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
 
-const NutritionSection = () => {
+const MechanicsSection = () => {
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
@@ -129,4 +129,4 @@ const NutritionSection = () => {
   );
 };
 
-export default NutritionSection;
+export default MechanicsSection;

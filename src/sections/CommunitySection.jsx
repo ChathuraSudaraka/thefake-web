@@ -3,7 +3,7 @@ import { cards } from "../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const TestimonialSection = () => {
+const CommunitySection = () => {
   const vdRef = useRef([]);
 
   useGSAP(() => {
@@ -96,4 +96,4 @@ const TestimonialSection = () => {
   );
 };
 
-export default TestimonialSection;
+export default CommunitySection;

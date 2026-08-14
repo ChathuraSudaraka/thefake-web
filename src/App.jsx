@@ -2,13 +2,13 @@ import NavBar from "./components/NavBar";
 import HeroSection from "./sections/HeroSection";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
-import MessageSection from "./sections/MessageSection";
-import FlavorSection from "./sections/FlavorSection";
-import NutritionSection from "./sections/NutritionSection";
-import BenefitSection from "./sections/BenefitSection";
-import TestimonialSection from "./sections/TestimonialSection";
-import FooterSection from "./sections/FooterSection";
 import DonationSection from "./sections/DonationSection";
+import MessageSection from "./sections/MessageSection";
+import GameplaySection from "./sections/GameplaySection";
+import MechanicsSection from "./sections/MechanicsSection";
+import FeaturesSection from "./sections/FeaturesSection";
+import CommunitySection from "./sections/CommunitySection";
+import FooterSection from "./sections/FooterSection";
 import { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -30,10 +30,10 @@ const App = () => {
       <HeroSection />
       <DonationSection />
       <MessageSection />
-      <FlavorSection />
-      <NutritionSection />
-      <BenefitSection />
-      <TestimonialSection />
+      <GameplaySection />
+      <MechanicsSection />
+      <FeaturesSection />
+      <CommunitySection />
       <FooterSection />
     </main>
   );

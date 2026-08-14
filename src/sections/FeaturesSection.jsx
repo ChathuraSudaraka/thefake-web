@@ -3,7 +3,7 @@ import ClipPathTitle from "../components/ClipPathTitle";
 import gsap from "gsap";
 import VideoPinSection from "../components/VideoPinSection";
 
-const BenefitSection = () => {
+const FeaturesSection = () => {
   useGSAP(() => {
     const revealTl = gsap.timeline({
       delay: 1,
@@ -95,4 +95,4 @@ const BenefitSection = () => {
   );
 };
 
-export default BenefitSection;
+export default FeaturesSection;

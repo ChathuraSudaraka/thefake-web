@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
-const FlavorSlider = () => {
+const GameplaySlider = () => {
   const sliderRef = useRef();
 
   const isTablet = useMediaQuery({
@@ -107,4 +107,4 @@ const FlavorSlider = () => {
   );
 };
 
-export default FlavorSlider;
+export default GameplaySlider;

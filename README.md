@@ -50,18 +50,18 @@ thefake-web/
 ├── src/
 │   ├── components/     # Modular UI components
 │   │   ├── ClipPathTitle.jsx    # Polygon reveal title component
-│   │   ├── FlavorSlider.jsx     # Horizontal interactive gameplay mode slider
-│   │   ├── FlavorTitle.jsx      # Animated gameplay section header
+│   │   ├── GameplaySlider.jsx   # Horizontal interactive gameplay mode slider
+│   │   ├── GameplayTitle.jsx    # Animated gameplay section header
 │   │   ├── NavBar.jsx           # Fixed navbar with instant donation anchor button
 │   │   └── VideoPinSection.jsx  # Pinned gameplay showcase video container
 │   ├── sections/       # Core page sections
 │   │   ├── HeroSection.jsx        # Landing cinematic with video & animated title
 │   │   ├── DonationSection.jsx    # Community tier cards with custom amount input
 │   │   ├── MessageSection.jsx     # Proximity audio lore & scrub-reveal typography
-│   │   ├── FlavorSection.jsx      # Game modes & mechanics showcase
-│   │   ├── NutritionSection.jsx   # Rules, hunter specs & round stats
-│   │   ├── BenefitSection.jsx     # Core game features (UE5, Voice Chat, Physics)
-│   │   ├── TestimonialSection.jsx # Community reactions & video clips deck
+│   │   ├── GameplaySection.jsx    # Game modes & mechanics showcase
+│   │   ├── MechanicsSection.jsx   # Rules, hunter specs & round stats
+│   │   ├── FeaturesSection.jsx    # Core game features (UE5, Voice Chat, Physics)
+│   │   ├── CommunitySection.jsx   # Community reactions & video clips deck
 │   │   └── FooterSection.jsx      # Wishlist CTA, newsletter, and social channels
 │   ├── constants/      # Game mechanics, tiers, and navigation constants
 │   ├── App.jsx         # App root & GSAP plugin registration
