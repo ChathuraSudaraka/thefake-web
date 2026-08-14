@@ -224,6 +224,93 @@ body::-webkit-scrollbar {
     }
   }
 
+  .donate-section {
+    @apply min-h-dvh bg-[#130f0d] overflow-hidden flex flex-col justify-center relative z-20 py-24;
+
+    .donate-bg-texts {
+      @apply absolute inset-0 flex flex-col justify-center pointer-events-none select-none overflow-hidden gap-10;
+
+      h1 {
+        @apply uppercase text-[20.5vw] leading-[105%] tracking-[-.4vw] font-bold text-[#ece8e106] whitespace-nowrap;
+      }
+
+      .donate-bg-text-2 {
+        @apply self-end;
+      }
+    }
+
+    .donate-layout {
+      @apply flex md:flex-row flex-col justify-between md:items-center items-start md:gap-0 gap-16 md:px-10 px-5;
+    }
+
+    .donate-left {
+      @apply flex flex-col md:items-start items-start md:w-[38%] w-full;
+
+      h1 {
+        @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw] text-milk;
+      }
+
+      .donate-wipe {
+        @apply rotate-[-8deg] border-[.5vw] border-[#130f0d] 2xl:mt-1 md:mt-0 -mt-1 -ml-2 md:-ml-4 relative z-10 self-start;
+
+        h2 {
+          @apply 2xl:text-5xl md:text-4xl text-2xl font-bold uppercase leading-none tracking-tight text-nowrap;
+        }
+      }
+    }
+
+    /* 2×2 card grid with solid theme colors */
+    .donate-cards-grid {
+      @apply grid grid-cols-2 gap-3.5 md:w-[55%] w-full;
+
+      .donate-card {
+        @apply relative flex flex-col justify-between bg-[#1e1210] border-[.35vw] border-[#0f0d0e] md:rounded-[1.5vw] rounded-2xl md:p-7 p-5 md:h-56 h-44 cursor-pointer will-change-transform transition-colors duration-500 ease-out;
+
+        &.is-active {
+          @apply bg-[#2a1e18] border-[#0f0d0e];
+        }
+
+        &:hover:not(.is-active) {
+          @apply bg-[#241714];
+        }
+
+        .donate-card-top {
+          @apply flex justify-between items-start;
+
+          .donate-card-amount {
+            @apply 2xl:text-5xl md:text-4xl text-3xl tracking-tight text-milk;
+          }
+
+          .donate-custom-wrapper {
+            @apply flex items-center bg-[#140e0c] border-[.2vw] border-[#0f0d0e] rounded-lg px-2.5 py-1 md:max-w-[130px] max-w-[100px];
+
+            .donate-custom-input {
+              @apply bg-transparent outline-none w-full text-right p-0;
+              -moz-appearance: textfield;
+              &::-webkit-outer-spin-button,
+              &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        .donate-card-bottom {
+          @apply flex flex-col gap-1;
+
+          .donate-card-label {
+            @apply 2xl:text-xl md:text-lg text-base leading-tight text-milk;
+          }
+
+          .donate-card-desc {
+            @apply leading-snug mt-1 text-[#a89070];
+          }
+        }
+      }
+    }
+  }
+
   .testimonials-section {
     @apply bg-[#0f0d0e] relative w-full h-[120dvh];
 
