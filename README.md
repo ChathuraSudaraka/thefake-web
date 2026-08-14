@@ -1,126 +1,134 @@
-# Spylt-awward-clone
+# The Fake — Horror Coop Prop Hunt Experience
 
-Recreating a website frontend that has won an Awwwards Site of the Day, using GSAP, ReactJS, and Tailwind CSS.
+An immersive, award-winning-caliber web experience built for **"The Fake"** — a horror coop prop hunt game where ghosts hide as everyday objects, hunters track by sound, and voice proximity chat betrays every breath.
 
-## � Live Demo
+Powered by **React 19**, **GSAP (ScrollTrigger & SplitText)**, **Vite**, and **Tailwind CSS 4**.
 
-Check out the live demo here: **[https://prince-elie.github.io/Spylt-awward-clone/](https://prince-elie.github.io/Spylt-awward-clone/)**
+---
 
-## �🎨 Description
+## 🎮 About The Game
 
-This project is a clone of an Awwwards-awarded website (Site of the Day). It showcases smooth and modern animations with a clean and responsive user interface. The site features multiple dynamic sections including product benefits, a flavor gallery, and customer testimonials.
+**The Fake** is an intense multiplayer horror experience powered by Unreal Engine 5:
+- **Hide in Plain Sight**: Impersonate any prop in the haunted room with real-time physics.
+- **Proximity Chat Betrayal**: Every sound through your real microphone reveals your location to coop hunters.
+- **Dynamic Physics & Lighting**: High-fidelity UE5 horror atmosphere with procedural props.
 
-## 🚀 Features
+---
 
-- **Advanced GSAP Animations** : Smooth and performant animations for an exceptional user experience
-- **Responsive Design** : Interface adapted to all devices (mobile, tablet, desktop)
-- **Dynamic Sections** : Hero, Benefits, Flavors, Nutrition, Testimonials, Messages
-- **Smooth Navigation** : Interactive navigation bar
-- **Multimedia Gallery** : Integrated images and videos
-- **Interactive Slider** : Flavor selection with intuitive navigation
+## ✨ Features & Visual Interactions
 
-## 🛠️ Technologies Used
+- **Cinematic Hero**: Video backdrop with dynamic char-split typography and tilt scrub on scroll.
+- **Interactive Donation Deck**: Tiered community backing grid ($5, $10, $25, Custom) with smooth hover/click spring physics and direct anchor navigation.
+- **Proximity Text Reveal**: Kinetic message section with char & word SplitText scrub triggers.
+- **Game Mode Showcase**: Scrub-driven horizontal slider showcasing gameplay modes and props.
+- **Mechanics Grid**: Interactive breakdown of ghost count, hunter loadouts, and proximity voice nodes.
+- **Pinned Video Feature**: Pinned video presentation spotlighting core Unreal Engine 5 gameplay mechanics.
+- **Community Clips Deck**: Fan-spread deck displaying community highlight clips and hunter reactions.
+- **Responsive Architecture**: Fluid scaling across Ultra-wide (2XL), Desktop, Tablet, and Mobile devices.
 
-- **React 19** : JavaScript library for building user interfaces
-- **Vite** : Ultra-fast build tool for development
-- **Tailwind CSS 4** : Utility-first CSS framework for styling
-- **GSAP 3** : Professional animation library
-- **React Responsive** : Media queries management in React
-- **ES Modules** : Modern JavaScript syntax
+---
 
-## 📦 Installation
+## 🛠️ Tech Stack
 
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
+| Technology | Purpose |
+|---|---|
+| **React 19** | Component-driven UI & state management |
+| **GSAP 3 + @gsap/react** | ScrollTrigger, SplitText, scrubbing, timeline sequencing & spring physics |
+| **Tailwind CSS 4** | Custom horror design tokens, utility layers & layout engine |
+| **Vite 6** | Lightning-fast development & optimized production build |
+| **React Responsive** | Adaptive breakpoints for mobile, tablet, and desktop viewports |
 
-### Steps
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Prince-Elie/Spylt-awward-clone.git
-   cd Spylt-awward-clone
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-## 📝 Available Scripts
-
-```bash
-# Start the development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Check code linting
-npm run lint
-
-# Preview the production build
-npm run preview
-```
+---
 
 ## 📁 Project Structure
 
 ```
-src/
-├── components/          # Reusable components
-│   ├── ClipPathTitle.jsx
-│   ├── FlavorSlider.jsx
-│   ├── FlavorTitle.jsx
-│   ├── NavBar.jsx
-│   └── VideoPinSection.jsx
-├── sections/           # Main page sections
-│   ├── HeroSection.jsx
-│   ├── BenefitSection.jsx
-│   ├── FlavorSection.jsx
-│   ├── NutritionSection.jsx
-│   ├── TestimonialSection.jsx
-│   ├── MessageSection.jsx
-│   └── FooterSection.jsx
-├── constants/          # Constants and data
-├── App.jsx            # Main component
-├── main.jsx           # Entry point
-└── index.css          # Global styles
+thefake-web/
+├── public/
+│   ├── images/         # Horror game assets, background textures, UI elements
+│   └── videos/         # Atmospheric video backgrounds & gameplay clips
+├── src/
+│   ├── components/     # Modular UI components
+│   │   ├── ClipPathTitle.jsx    # Polygon reveal title component
+│   │   ├── FlavorSlider.jsx     # Horizontal interactive gameplay mode slider
+│   │   ├── FlavorTitle.jsx      # Animated gameplay section header
+│   │   ├── NavBar.jsx           # Fixed navbar with instant donation anchor button
+│   │   └── VideoPinSection.jsx  # Pinned gameplay showcase video container
+│   ├── sections/       # Core page sections
+│   │   ├── HeroSection.jsx        # Landing cinematic with video & animated title
+│   │   ├── DonationSection.jsx    # Community tier cards with custom amount input
+│   │   ├── MessageSection.jsx     # Proximity audio lore & scrub-reveal typography
+│   │   ├── FlavorSection.jsx      # Game modes & mechanics showcase
+│   │   ├── NutritionSection.jsx   # Rules, hunter specs & round stats
+│   │   ├── BenefitSection.jsx     # Core game features (UE5, Voice Chat, Physics)
+│   │   ├── TestimonialSection.jsx # Community reactions & video clips deck
+│   │   └── FooterSection.jsx      # Wishlist CTA, newsletter, and social channels
+│   ├── constants/      # Game mechanics, tiers, and navigation constants
+│   ├── App.jsx         # App root & GSAP plugin registration
+│   ├── index.css       # Design tokens, custom dark horror palette & typography
+│   └── main.jsx        # React DOM entry point
+└── package.json
 ```
 
-## 🎯 Main Sections
+---
 
-- **HeroSection** : Landing section with introduction animation
-- **BenefitSection** : Product benefits presentation
-- **FlavorSection** : Interactive flavor gallery with slider
-- **NutritionSection** : Nutritional information
-- **TestimonialSection** : Customer testimonials
-- **MessageSection** : Call-to-action or promotional message
-- **FooterSection** : Footer with links and information
+## 🚀 Getting Started
 
-## 🌐 Deployment
+### Prerequisites
+- **Node.js**: `v18.0.0` or higher
+- **npm** or **yarn** / **pnpm**
 
-To deploy the production version:
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ChathuraSudaraka/thefake-web.git
+   cd thefake-web
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run development server**:
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:5173/` in your browser.
+
+---
+
+## 📦 Available Scripts
 
 ```bash
+# Start local Vite dev server with Hot Module Replacement (HMR)
+npm run dev
+
+# Compile production-ready bundle to /dist
 npm run build
+
+# Preview production build locally
+npm run preview
+
+# Run ESLint to check code quality
+npm run lint
 ```
 
-Compiled files will be available in the `dist/` folder.
+---
 
-## 📱 Responsiveness
+## 🎨 Design System & Palette
 
-The project uses Tailwind CSS and React Responsive to ensure an optimal experience on:
-- Mobile devices (320px and above)
-- Tablets (768px and above)
-- Desktops (1024px and above)
+- **Base Theme**: `#0f0d0e` (Deep Void Black)
+- **Secondary Surfaces**: `#140e0c`, `#1e1210`, `#2a1e18` (Dark Brown & Red-Brown Tones)
+- **Accents**: `#a89070` (Milk Yellow / Khaki), `#4a3425` (Warm Sienna)
+- **Text**: `#ece8e1` (Milk White)
+- **Typography**:
+  - **Headings**: `Antonio` (Condensed bold display)
+  - **Body / Paragraphs**: `Space Grotesk` (Modern geometric sans)
 
-## 💡 Development Notes
+---
 
-- GSAP animations are integrated via `@gsap/react` for better React integration
-- Images and videos are stored in the `public/` folder
-- Custom fonts are imported from Google Fonts
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
