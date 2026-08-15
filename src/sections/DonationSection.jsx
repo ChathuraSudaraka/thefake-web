@@ -4,16 +4,16 @@ import { SplitText } from "gsap/all";
 import { useState, useRef } from "react";
 
 const tiers = [
-  { amount: "$5", label: "Prop Fund", desc: "Adds 10 hauntable objects to the map." },
-  { amount: "$10", label: "Voice Node", desc: "Runs proximity chat servers for one month." },
-  { amount: "$25", label: "Hunter Pack", desc: "Exclusive skin + permanent Discord role." },
+  { amount: "$5",  label: "Prop Fund",    desc: "Adds 10 hauntable objects to the map." },
+  { amount: "$10", label: "Voice Node",   desc: "Runs proximity chat servers for one month." },
+  { amount: "$25", label: "Hunter Pack",  desc: "Exclusive skin + permanent Discord role." },
   { isCustom: true, label: "Custom Tier", desc: "Choose your own support amount." },
 ];
 
 const DonationSection = () => {
-  const [active, setActive] = useState(1);
+  const [active, setActive]           = useState(1);
   const [customAmount, setCustomAmount] = useState("50");
-  const cardsRef = useRef([]);
+  const cardsRef                       = useRef([]);
 
   useGSAP(() => {
     const titleSplit = SplitText.create(".donate-title", { type: "chars" });
@@ -22,119 +22,110 @@ const DonationSection = () => {
       linesClass: "paragraph-line",
     });
 
+    // ─── Entrance — Chug-SPYLT overlapping sequence ────────────────────
     const entryTl = gsap.timeline({
-      scrollTrigger: { trigger: ".donate-section", start: "top 65%" },
+      scrollTrigger: { trigger: ".donate-section", start: "top 60%" },
     });
 
     entryTl
       .from(titleSplit.chars, {
         yPercent: 100,
-        stagger: 0.02,
-        ease: "power2.out",
+        stagger: 0.018,
+        ease: "power3.out",
         duration: 0.9,
       })
       .to(
         ".donate-wipe",
-        { duration: 1, clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", ease: "circ.out" },
-        "-=0.4"
+        {
+          duration: 1.1,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        },
+        "-=0.5"
       )
       .from(
         paragraphSplit.words,
-        { yPercent: 300, rotate: 3, ease: "power1.inOut", duration: 1, stagger: 0.015 },
-        "-=0.5"
+        {
+          yPercent: 300,
+          rotate: 3,
+          ease: "power3.out",
+          duration: 1,
+          stagger: 0.012,
+        },
+        "-=0.6"
       );
 
-    // Bouncy cards entrance animation
+    // ─── Cards bounce entrance — back.out(3) matches Chug-SPYLT energy ─
     gsap.fromTo(
       ".donate-card",
-      {
-        y: 80,
-        scale: 0.82,
-        opacity: 0,
-      },
+      { y: 90, scale: 0.8, opacity: 0 },
       {
         y: 0,
         scale: 1,
         opacity: 1,
-        stagger: 0.1,
-        duration: 0.9,
-        ease: "back.out(2.4)",
+        stagger: 0.09,
+        duration: 1,
+        ease: "back.out(3)",
         scrollTrigger: {
           trigger: ".donate-cards-grid",
-          start: "top 75%",
+          start: "top 80%",
         },
       }
     );
 
-    // Scroll parallax dynamic spring on grid
-    const scrollTl = gsap.timeline({
+    // ─── Scroll parallax on grid (subtle float) ─────────────────────────
+    gsap.timeline({
       scrollTrigger: {
         trigger: ".donate-cards-grid",
         start: "top bottom",
         end: "bottom top",
         scrub: 0.8,
       },
-    });
+    }).to(".donate-cards-grid", { yPercent: -8, ease: "none" });
 
-    scrollTl.to(".donate-cards-grid", {
-      yPercent: -8,
-      ease: "none",
-    });
-
-    // Kinetic background text
-    const textTl = gsap.timeline({
-      scrollTrigger: { trigger: ".donate-section", start: "top bottom", end: "bottom top", scrub: true },
-    });
-    textTl
-      .to(".donate-bg-text-1", { xPercent: 40, ease: "none" }, 0)
-      .to(".donate-bg-text-2", { xPercent: -30, ease: "none" }, 0);
+    // ─── Kinetic bg text — wider range than before ─────────────────────
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".donate-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1.5,
+      },
+    })
+      .to(".donate-bg-text-1", { xPercent:  55, ease: "none" }, 0)
+      .to(".donate-bg-text-2", { xPercent: -45, ease: "none" }, 0);
   });
 
+  // ─── Click: compress → spring out (back.out feel) ──────────────────
   const handleCardClick = (index) => {
     setActive(index);
-    const targetCard = cardsRef.current[index];
-    if (targetCard) {
-      const clickTl = gsap.timeline();
-      clickTl
-        .to(targetCard, {
-          scale: 0.96,
-          duration: 0.12,
-          ease: "power2.inOut",
-          force3D: true,
-        })
-        .to(targetCard, {
-          scale: 1.02,
-          duration: 0.45,
-          ease: "power3.out",
-          force3D: true,
-        });
+    const card = cardsRef.current[index];
+    if (card) {
+      gsap.timeline()
+        .to(card, { scale: 0.94, duration: 0.1,  ease: "power2.in",  force3D: true })
+        .to(card, { scale: 1.04, duration: 0.5,  ease: "back.out(3)", force3D: true })
+        .to(card, { scale: 1,    duration: 0.25, ease: "power2.out", force3D: true });
     }
   };
 
   const handleCardMouseEnter = (index) => {
-    const targetCard = cardsRef.current[index];
-    if (targetCard) {
-      gsap.to(targetCard, {
-        scale: 1.025,
-        duration: 0.4,
-        ease: "power3.out",
-        force3D: true,
-        overwrite: "auto",
-      });
-    }
+    gsap.to(cardsRef.current[index], {
+      scale: 1.03,
+      duration: 0.45,
+      ease: "power3.out",
+      force3D: true,
+      overwrite: "auto",
+    });
   };
 
   const handleCardMouseLeave = (index) => {
-    const targetCard = cardsRef.current[index];
-    if (targetCard) {
-      gsap.to(targetCard, {
-        scale: 1,
-        duration: 0.45,
-        ease: "power3.out",
-        force3D: true,
-        overwrite: "auto",
-      });
-    }
+    gsap.to(cardsRef.current[index], {
+      scale: 1,
+      duration: 0.45,
+      ease: "power3.out",
+      force3D: true,
+      overwrite: "auto",
+    });
   };
 
   return (
@@ -232,4 +223,3 @@ const DonationSection = () => {
 };
 
 export default DonationSection;
-

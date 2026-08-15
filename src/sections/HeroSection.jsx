@@ -17,47 +17,51 @@ const HeroSection = () => {
       type: "chars",
     });
 
-    const tl = gsap.timeline({
-      delay: 1,
-    });
+    // ─── Entrance timeline — identical to Chug-SPYLT ───────────────────
+    const tl = gsap.timeline({ delay: 0.8 });
 
     tl.to(".hero-content", {
       opacity: 1,
       y: 0,
-      ease: "power1.inOut",
+      duration: 0.9,
+      ease: "power2.out",
     })
       .to(
         ".hero-text-scroll",
         {
-          duration: 1,
+          duration: 1.1,
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           ease: "circ.out",
         },
-        "-=0.5"
+        "-=0.6"
       )
       .from(
         titleSplit.chars,
         {
           yPercent: 200,
-          stagger: 0.02,
-          ease: "power2.out",
+          stagger: 0.018,
+          duration: 0.9,
+          ease: "power3.out",
         },
-        "-=0.5"
+        "-=0.7"
       );
 
+    // ─── Scroll tilt — Chug-SPYLT's card-fall pivot from bottom ────────
     const heroTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".hero-container",
         start: "1% top",
         end: "bottom top",
-        scrub: true,
+        scrub: 1,           // weighted scrub — not instant
       },
     });
+
     heroTl.to(".hero-container", {
       rotate: 7,
-      scale: 0.9,
-      yPercent: 30,
-      ease: "power1.inOut",
+      scale: 0.88,
+      yPercent: 25,
+      transformOrigin: "center bottom", // pivot from bottom edge like Chug-SPYLT
+      ease: "none",
     });
   });
 
@@ -87,7 +91,7 @@ const HeroSection = () => {
           />
         )}
 
-        {/* Dark overlay to unify video with dark palette */}
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-[#0f0d0e] opacity-55 z-[1]" />
 
         <div className="hero-content opacity-0">

@@ -29,38 +29,44 @@ const MechanicsSection = () => {
       linesClass: "paragraph-line",
     });
 
+    // ─── Chug-SPYLT: title chars snap in from below ─────────────────────
     const contentTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".nutrition-section",
-        start: "top center",
+        start: "top 70%",
       },
     });
     contentTl
       .from(titleSplit.chars, {
         yPercent: 100,
-        stagger: 0.02,
-        ease: "power2.out",
+        stagger: 0.018,
+        ease: "power3.out",
+        duration: 0.9,
       })
-      .from(paragraphSplit.words, {
-        yPercent: 300,
-        rotate: 3,
-        ease: "power1.inOut",
-        duration: 1,
-        stagger: 0.01,
-      });
+      .from(
+        paragraphSplit.words,
+        {
+          yPercent: 300,
+          rotate: 3,
+          ease: "power3.out",
+          duration: 1,
+          stagger: 0.012,
+        },
+        "-=0.5"
+      );
 
-    const titleTl = gsap.timeline({
+    // ─── Pill banner: left wipe with circ.inOut ─────────────────────────
+    gsap.timeline({
       scrollTrigger: {
         trigger: ".nutrition-section",
-        start: "top 80%",
+        start: "top 75%",
+        toggleActions: "play none none reverse",
       },
-    });
-
-    titleTl.to(".nutrition-text-scroll", {
-      duration: 1,
+    }).to(".nutrition-text-scroll", {
+      duration: 1.2,
       opacity: 1,
       clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)",
-      ease: "power1.inOut",
+      ease: "circ.inOut",
     });
   });
 

@@ -20,14 +20,14 @@ const GameplaySlider = () => {
           trigger: ".flavor-section",
           start: "2% top",
           end: `+=${scrollAmount + 1500}px`,
-          scrub: true,
+          scrub: 1.5,   // weighted — matches Chug-SPYLT's flavor slider feel
           pin: true,
         },
       });
 
       tl.to(".flavor-section", {
         x: `-${scrollAmount + 1500}px`,
-        ease: "power1.inOut",
+        ease: "power2.inOut",
       });
     }
 
@@ -36,31 +36,14 @@ const GameplaySlider = () => {
         trigger: ".flavor-section",
         start: "top top",
         end: "bottom 80%",
-        scrub: true,
+        scrub: 1.5,
       },
     });
 
     titleTl
-      .to(".first-text-split", {
-        xPercent: -30,
-        ease: "power1.inOut",
-      })
-      .to(
-        ".flavor-text-scroll",
-        {
-          xPercent: -22,
-          ease: "power1.inOut",
-        },
-        "<"
-      )
-      .to(
-        ".second-text-split",
-        {
-          xPercent: -10,
-          ease: "power1.inOut",
-        },
-        "<"
-      );
+      .to(".first-text-split",  { xPercent: -30, ease: "power2.inOut" })
+      .to(".flavor-text-scroll",{ xPercent: -22, ease: "power2.inOut" }, "<")
+      .to(".second-text-split", { xPercent: -10, ease: "power2.inOut" }, "<");
   });
 
   return (

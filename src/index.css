@@ -26,7 +26,6 @@ body {
   color: #ece8e1;
   font-family: "Antonio", sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
 }
@@ -208,18 +207,18 @@ body::-webkit-scrollbar {
     }
 
     .vd-pin-section {
-      @apply md:h-[110vh] h-dvh overflow-hidden md:!-translate-y-[15%] md:mt-0 mt-20;
+      @apply h-dvh overflow-hidden md:mt-0 mt-20;
 
       video {
         @apply size-full absolute inset-0 object-cover;
       }
 
       .play-btn {
-        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[9vw] flex justify-center items-center bg-[#ffffff1a] backdrop-blur-xl rounded-full;
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 2xl:size-[7vw] size-[9vw] flex justify-center items-center bg-[#ffffff1a] backdrop-blur-xl rounded-full;
       }
 
       img:first-of-type {
-        @apply size-[15vw];
+        @apply 2xl:size-[12vw] size-[15vw];
       }
     }
   }
@@ -354,13 +353,20 @@ body::-webkit-scrollbar {
 }
 
 .spin-circle {
-  animation: spin 20s linear infinite;
+  /* Rotation is now driven by GSAP ScrollTrigger (scrub) for the iris
+     acceleration effect — no CSS animation override needed. On mobile
+     where the pin section is skipped, restore a gentle CSS spin. */
+  animation: none;
 }
+
+/* Mobile fallback — restore gentle spin when GSAP pin is inactive */
+@media (max-width: 768px) {
+  .spin-circle {
+    animation: spin 20s linear infinite;
+  }
+}
+
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

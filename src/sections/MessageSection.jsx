@@ -15,54 +15,58 @@ const MessageSection = () => {
       linesClass: "paragraph-line",
     });
 
+    // ─── Word-by-word color reveal scrub ───────────────────────────────
+    // Chug-SPYLT: deliberate read-reveal, triggers late so words light up
+    // as they're squarely in the reader's view (start 80%, end 55% center)
     gsap.to(firstMsgSplit.words, {
       color: "#ece8e1",
-      ease: "power1.in",
-      stagger: 1,
+      ease: "none",
+      stagger: 0.5,
       scrollTrigger: {
-        trigger: ".message-content",
-        start: "top center",
-        end: "30% center",
-        scrub: true,
-      },
-    });
-    gsap.to(secMsgSplit.words, {
-      color: "#ece8e1",
-      ease: "power1.in",
-      stagger: 1,
-      scrollTrigger: {
-        trigger: ".second-message",
-        start: "top center",
-        end: "bottom center",
-        scrub: true,
+        trigger: ".first-message",
+        start: "top 80%",
+        end: "bottom 45%",
+        scrub: 1.5,
       },
     });
 
-    const revealTl = gsap.timeline({
-      delay: 1,
+    gsap.to(secMsgSplit.words, {
+      color: "#ece8e1",
+      ease: "none",
+      stagger: 0.5,
       scrollTrigger: {
-        trigger: ".msg-text-scroll",
-        start: "top 60%",
+        trigger: ".second-message",
+        start: "top 80%",
+        end: "bottom 45%",
+        scrub: 1.5,
       },
     });
-    revealTl.to(".msg-text-scroll", {
-      duration: 1,
+
+    // ─── Pill banner wipe — Chug-SPYLT's left-to-right circ.inOut ──────
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".msg-text-scroll",
+        start: "top 72%",
+        toggleActions: "play none none reverse",
+      },
+    }).to(".msg-text-scroll", {
+      duration: 1.2,
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       ease: "circ.inOut",
     });
 
-    const paragraphTl = gsap.timeline({
+    // ─── Paragraph word entrance — tight stagger like Chug-SPYLT ───────
+    gsap.timeline({
       scrollTrigger: {
         trigger: ".message-content p",
-        start: "top center",
+        start: "top 75%",
       },
-    });
-    paragraphTl.from(paragraphSplit.words, {
+    }).from(paragraphSplit.words, {
       yPercent: 300,
       rotate: 3,
-      ease: "power1.inOut",
+      ease: "power3.out",
       duration: 1,
-      stagger: 0.01,
+      stagger: 0.012,
     });
   });
 

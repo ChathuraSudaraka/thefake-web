@@ -23,7 +23,7 @@ const FooterSection = () => {
         {isMobile ? (
           <img
             src={`${import.meta.env.BASE_URL}images/footer-drink.png`}
-            className="absolute top-0 object-contain opacity-15"
+            className="absolute inset-0 w-full h-full object-cover opacity-15"
           />
         ) : (
           <video
@@ -31,7 +31,8 @@ const FooterSection = () => {
             autoPlay
             playsInline
             muted
-            className="absolute top-0 object-contain mix-blend-lighten opacity-30"
+            loop
+            className="absolute inset-0 w-full h-full object-cover object-bottom mix-blend-lighten opacity-35 pointer-events-none"
           />
         )}
 

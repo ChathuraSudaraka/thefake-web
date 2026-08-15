@@ -5,12 +5,14 @@ import VideoPinSection from "../components/VideoPinSection";
 
 const FeaturesSection = () => {
   useGSAP(() => {
+    // ─── Chug-SPYLT cascaded wipe: each title wipes in sequentially ────
+    // as the user scrolls — not all at once. Uses scrub so it's scroll-
+    // linked, and each title fills its allotted slice of scroll distance.
     const revealTl = gsap.timeline({
-      delay: 1,
       scrollTrigger: {
         trigger: ".benefit-section",
-        start: "top 60%",
-        end: "top top",
+        start: "top 55%",
+        end: "center center",
         scrub: 1.5,
       },
     });
@@ -22,24 +24,50 @@ const FeaturesSection = () => {
         clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
         ease: "circ.out",
       })
-      .to(".benefit-section .second-title", {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      })
-      .to(".benefit-section .third-title", {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      })
-      .to(".benefit-section .fourth-title", {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      });
+      .to(
+        ".benefit-section .second-title",
+        {
+          duration: 1,
+          opacity: 1,
+          clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        },
+        "-=0.3"   // slight overlap — next wipe starts before current finishes
+      )
+      .to(
+        ".benefit-section .third-title",
+        {
+          duration: 1,
+          opacity: 1,
+          clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        },
+        "-=0.3"
+      )
+      .to(
+        ".benefit-section .fourth-title",
+        {
+          duration: 1,
+          opacity: 1,
+          clipPath: "polygon(0% 0%, 100% 0, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        },
+        "-=0.3"
+      );
+
+    // ─── Intro paragraph wipe ───────────────────────────────────────────
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".benefit-section p:first-of-type",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    }).from(".benefit-section > div > div > p:first-of-type", {
+      yPercent: 100,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
   });
 
   return (
