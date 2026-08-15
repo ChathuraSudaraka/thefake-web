@@ -31,7 +31,6 @@ const FooterSection = () => {
             autoPlay
             playsInline
             muted
-            loop
             className="absolute inset-0 w-full h-full object-cover object-bottom mix-blend-lighten opacity-35 pointer-events-none"
           />
         )}

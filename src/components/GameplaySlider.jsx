@@ -2,41 +2,49 @@ import { useGSAP } from "@gsap/react";
 import { modelists } from "../constants";
 import gsap from "gsap";
 import { useRef } from "react";
-import { useMediaQuery } from "react-responsive";
 
 const GameplaySlider = () => {
   const sliderRef = useRef();
 
-  const isTablet = useMediaQuery({
-    query: "(max-width: 1024px)",
-  });
-
   useGSAP(() => {
-    const scrollAmount = sliderRef.current.scrollWidth - window.innerWidth;
+    // ── Desktop horizontal pin ──────────────────────────────────────────
+    // gsap.matchMedia properly kills & rebuilds triggers on resize.
+    const mm = gsap.matchMedia();
 
-    if (!isTablet) {
+    mm.add("(min-width: 1025px)", () => {
+      const getScrollAmount = () => {
+        if (!sliderRef.current) return 2000;
+        return sliderRef.current.scrollWidth - window.innerWidth;
+      };
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".flavor-section",
           start: "2% top",
-          end: `+=${scrollAmount + 1500}px`,
-          scrub: 1.5,   // weighted — matches Chug-SPYLT's flavor slider feel
+          end: () => `+=${getScrollAmount() + 1500}px`,
+          invalidateOnRefresh: true,
+          scrub: 1.5,
           pin: true,
         },
       });
 
       tl.to(".flavor-section", {
-        x: `-${scrollAmount + 1500}px`,
+        x: () => `-${getScrollAmount() + 1500}px`,
         ease: "power2.inOut",
+        invalidateOnRefresh: true,
       });
-    }
 
+      return () => tl.kill();
+    });
+
+    // ── Parallax title drift ─────────────────────────────────────────────
     const titleTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".flavor-section",
         start: "top top",
         end: "bottom 80%",
         scrub: 1.5,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -44,6 +52,8 @@ const GameplaySlider = () => {
       .to(".first-text-split",  { xPercent: -30, ease: "power2.inOut" })
       .to(".flavor-text-scroll",{ xPercent: -22, ease: "power2.inOut" }, "<")
       .to(".second-text-split", { xPercent: -10, ease: "power2.inOut" }, "<");
+
+    return () => mm.revert();
   });
 
   return (

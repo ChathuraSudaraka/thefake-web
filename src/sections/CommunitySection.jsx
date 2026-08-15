@@ -7,10 +7,6 @@ const CommunitySection = () => {
   const vdRef = useRef([]);
 
   useGSAP(() => {
-    // ─── Overlap community section onto previous — exact Chug-SPYLT ────
-    gsap.set(".testimonials-section", {
-      marginTop: "-140vh",
-    });
 
     // ─── Kinetic bg title scrub — stronger range than before ───────────
     // Chug-SPYLT: first title shoots far right, last shoots far left
