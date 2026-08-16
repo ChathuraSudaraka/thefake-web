@@ -57,11 +57,22 @@ const CommunitySection = () => {
   });
 
   const handlePlay = (index) => {
-    vdRef.current[index]?.play();
+    const video = vdRef.current[index];
+    if (video) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Play request interrupted or aborted
+        });
+      }
+    }
   };
 
   const handlePause = (index) => {
-    vdRef.current[index]?.pause();
+    const video = vdRef.current[index];
+    if (video) {
+      video.pause();
+    }
   };
 
   return (
@@ -76,7 +87,7 @@ const CommunitySection = () => {
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`vd-card ${card.translation} ${card.rotation} will-change-transform`}
+            className={`vd-card ${card.translation || ""} ${card.rotation || ""} will-change-transform cursor-pointer`}
             onMouseEnter={() => handlePlay(index)}
             onMouseLeave={() => handlePause(index)}
           >
@@ -86,7 +97,7 @@ const CommunitySection = () => {
               playsInline
               muted
               loop
-              preload="none"
+              preload="auto"
               className="size-full object-cover pointer-events-none"
             />
           </div>
