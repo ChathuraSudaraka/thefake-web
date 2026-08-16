@@ -14,8 +14,16 @@ const FooterSection = () => {
       </div>
 
       <div className="relative md:pt-[10vh] pt-[5vh] pb-10">
+        <div className="flex-center mb-6 z-10 relative">
+          <img
+            src={`${import.meta.env.BASE_URL}images/footer-logo.png`}
+            alt="The Fake"
+            className="md:h-20 h-14 object-contain opacity-90 hover:opacity-100 transition-opacity"
+          />
+        </div>
+
         <div className="overflow-hidden z-10">
-          <h1 className="general-title text-center text-milk py-5">
+          <h1 className="general-title text-center text-milk py-2">
             #STAYHIDDEN
           </h1>
         </div>

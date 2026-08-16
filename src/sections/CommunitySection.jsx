@@ -72,11 +72,11 @@ const CommunitySection = () => {
         <h1 className="text-milk third-title">Live</h1>
       </div>
 
-      <div className="pin-box">
+      <div className="pin-box will-change-transform">
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`vd-card ${card.translation} ${card.rotation}`}
+            className={`vd-card ${card.translation} ${card.rotation} will-change-transform`}
             onMouseEnter={() => handlePlay(index)}
             onMouseLeave={() => handlePause(index)}
           >
@@ -86,7 +86,8 @@ const CommunitySection = () => {
               playsInline
               muted
               loop
-              className="size-full object-cover"
+              preload="none"
+              className="size-full object-cover pointer-events-none"
             />
           </div>
         ))}

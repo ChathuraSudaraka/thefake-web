@@ -151,7 +151,7 @@ const DonationSection = () => {
               style={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" }}
               className="donate-wipe"
             >
-              <div className="bg-[#2a1e18] pb-4 md:pt-0 pt-2 px-5">
+              <div className="bg-[#2a1e18] md:pb-4 pb-2 md:pt-0 pt-1 md:px-5 px-3">
                 <h2 className="text-[#a89070]">One Time · No Account</h2>
               </div>
             </div>

@@ -21,16 +21,17 @@ const GameplaySlider = () => {
         scrollTrigger: {
           trigger: ".flavor-section",
           start: "2% top",
-          end: () => `+=${getScrollAmount() + 1500}px`,
+          end: () => `+=${getScrollAmount() + 1200}px`,
           invalidateOnRefresh: true,
-          scrub: 1.5,
+          scrub: 1,
           pin: true,
         },
       });
 
       tl.to(".flavor-section", {
-        x: () => `-${getScrollAmount() + 1500}px`,
-        ease: "power2.inOut",
+        x: () => `-${getScrollAmount() + 1200}px`,
+        ease: "none",
+        force3D: true,
         invalidateOnRefresh: true,
       });
 
