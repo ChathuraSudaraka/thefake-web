@@ -7,6 +7,7 @@ const modelists = [
     rotation: "md:rotate-[-8deg] rotate-0",
     desc: "Hide as a prop. Mimic its sound.",
     tag: "Stealth",
+    image: "ghost.jpeg",
   },
   {
     name: "Hunter",
@@ -14,6 +15,7 @@ const modelists = [
     rotation: "md:rotate-[8deg] rotate-0",
     desc: "Track ghosts by ear. Shoot on sight.",
     tag: "Action",
+    image: "hunter.jpeg",
   },
   {
     name: "Co-op Hunt",
@@ -21,6 +23,7 @@ const modelists = [
     rotation: "md:rotate-[-8deg] rotate-0",
     desc: "Team up. Cover every exit.",
     tag: "Team",
+    image: "Co-op Hunt.jpeg",
   },
   {
     name: "Blackout",
@@ -28,6 +31,7 @@ const modelists = [
     rotation: "md:rotate-[8deg] rotate-0",
     desc: "Lights off. Trust only your ears.",
     tag: "Survival",
+    image: "Blackout.jpeg",
   },
   {
     name: "Overtime",
@@ -35,6 +39,7 @@ const modelists = [
     rotation: "md:rotate-[-8deg] rotate-0",
     desc: "Last ghost standing wins.",
     tag: "Endgame",
+    image: "Overtime.jpeg",
   },
   {
     name: "Spectator",
@@ -42,6 +47,7 @@ const modelists = [
     rotation: "md:rotate-[8deg] rotate-0",
     desc: "Watch. Whisper. Survive vicariously.",
     tag: "Observer",
+    image: "Spectator.jpeg",
   },
 ];
 

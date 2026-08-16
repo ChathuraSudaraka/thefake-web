@@ -72,11 +72,11 @@ const MechanicsSection = () => {
 
   return (
     <section className="nutrition-section">
-      <img
-        src={`${import.meta.env.BASE_URL}images/slider-dip.png`}
-        alt=""
-        className="w-full object-cover"
-      />
+      {/* Sleek section transition divider */}
+      <div className="w-full h-12 relative flex items-center justify-center overflow-hidden">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#6b4c33]/40 to-transparent" />
+        <div className="absolute size-2 bg-[#a89070] rotate-45 opacity-60 shadow-[0_0_8px_#a89070]" />
+      </div>
 
       <img
         src={`${import.meta.env.BASE_URL}images/big-img.png`}

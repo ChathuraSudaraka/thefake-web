@@ -7,13 +7,13 @@ const FooterSection = () => {
 
   return (
     <section className="footer-section">
-      <img
-        src={`${import.meta.env.BASE_URL}images/footer-dip.png`}
-        alt=""
-        className="w-full object-cover -translate-y-1"
-      />
+      {/* Sleek section transition divider */}
+      <div className="w-full h-12 relative flex items-center justify-center overflow-hidden">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#ece8e120] to-transparent" />
+        <div className="absolute size-2 bg-[#ece8e1] rotate-45 opacity-40 shadow-[0_0_8px_#ece8e1]" />
+      </div>
 
-      <div className="relative md:pt-[20vh] pt-[10vh] pb-10">
+      <div className="relative md:pt-[10vh] pt-[5vh] pb-10">
         <div className="overflow-hidden z-10">
           <h1 className="general-title text-center text-milk py-5">
             #STAYHIDDEN
@@ -21,10 +21,7 @@ const FooterSection = () => {
         </div>
 
         {isMobile ? (
-          <img
-            src={`${import.meta.env.BASE_URL}images/footer-drink.png`}
-            className="absolute inset-0 w-full h-full object-cover opacity-15"
-          />
+          <div className="absolute inset-0 w-full h-full bg-[#130f0d] opacity-50" />
         ) : (
           <video
             src={`${import.meta.env.BASE_URL}videos/splash.mp4`}
