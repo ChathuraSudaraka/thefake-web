@@ -72,7 +72,6 @@ const HeroSection = () => {
           src={`${import.meta.env.BASE_URL}videos/hero-bg.mp4`}
           autoPlay
           muted
-          loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         />
