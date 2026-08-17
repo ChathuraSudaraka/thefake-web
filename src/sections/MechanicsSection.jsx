@@ -84,7 +84,7 @@ const MechanicsSection = () => {
         className="big-img"
       />
 
-      <div className="flex md:flex-row flex-col justify-between md:px-10 px-5 mt-14 md:mt-0">
+      <div className="flex md:flex-row flex-col justify-between md:px-10 px-5 mt-14 md:mt-0 relative z-10">
         <div className="relative inline-block md:translate-y-20">
           <div className="general-title relative flex flex-col justify-center items-center gap-24">
             <div className="overflow-hidden place-self-start">
@@ -110,25 +110,25 @@ const MechanicsSection = () => {
             </p>
           </div>
         </div>
+      </div>
 
-        <div className="nutrition-box">
-          <div className="list-wrapper">
-            {lists.map((mechanic, index) => (
-              <div key={index} className="relative flex-1 col-center">
-                <div>
-                  <p className="md:text-lg font-paragraph">{mechanic.label}</p>
-                  <p className="font-paragraph text-sm mt-2 opacity-50">count</p>
-                  <p className="text-2xl md:text-4xl tracking-tighter font-bold text-milk">
-                    {mechanic.amount}
-                  </p>
-                </div>
-
-                {index !== lists.length - 1 && (
-                  <div className="spacer-border" />
-                )}
+      <div className="nutrition-box">
+        <div className="list-wrapper">
+          {lists.map((mechanic, index) => (
+            <div key={index} className="relative flex-1 col-center">
+              <div>
+                <p className="md:text-lg font-paragraph">{mechanic.label}</p>
+                <p className="font-paragraph text-sm mt-2 opacity-50">count</p>
+                <p className="text-2xl md:text-4xl tracking-tighter font-bold text-milk">
+                  {mechanic.amount}
+                </p>
               </div>
-            ))}
-          </div>
+
+              {index !== lists.length - 1 && (
+                <div className="spacer-border" />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
