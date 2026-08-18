@@ -35,7 +35,7 @@ const App = () => {
     const ease   = 0.1;
 
     const onWheel = (e) => {
-      if (e.target.closest("input, textarea, select")) return;
+      if (e.target.closest("input, textarea, select, iframe, .paypal-buttons")) return;
       e.preventDefault();
       targetY += e.deltaY * 0.9;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;

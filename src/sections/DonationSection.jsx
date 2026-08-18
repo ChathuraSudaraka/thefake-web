@@ -2,6 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useState, useRef } from "react";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PayPalModal from "../components/PayPalModal";
 
 const tiers = [
   { amount: "$5",  label: "Prop Fund",    desc: "Adds 10 hauntable objects to the map." },
@@ -10,10 +12,23 @@ const tiers = [
   { isCustom: true, label: "Custom Tier", desc: "Choose your own support amount." },
 ];
 
+const initialPayPalOptions = {
+  clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "test",
+  currency: import.meta.env.VITE_PAYPAL_CURRENCY || "USD",
+  intent: "capture",
+  components: "buttons",
+};
+
 const DonationSection = () => {
   const [active, setActive]           = useState(1);
   const [customAmount, setCustomAmount] = useState("50");
+  const [isModalOpen, setIsModalOpen]   = useState(false);
   const cardsRef                       = useRef([]);
+
+  const currentTier = tiers[active] || tiers[0];
+  const currentAmount = currentTier.isCustom
+    ? customAmount || "50"
+    : currentTier.amount.replace("$", "");
 
   useGSAP(() => {
     const titleSplit = SplitText.create(".donate-title", { type: "chars" });
@@ -73,15 +88,15 @@ const DonationSection = () => {
       }
     );
 
-    // ─── Scroll parallax on grid (subtle float) ─────────────────────────
+    // ─── Scroll parallax on right column (subtle float) ─────────────────
     gsap.timeline({
       scrollTrigger: {
-        trigger: ".donate-cards-grid",
+        trigger: ".donate-right",
         start: "top bottom",
         end: "bottom top",
         scrub: 0.8,
       },
-    }).to(".donate-cards-grid", { yPercent: -8, ease: "none" });
+    }).to(".donate-right", { yPercent: -6, ease: "none" });
 
     // ─── Kinetic bg text — wider range than before ─────────────────────
     gsap.timeline({
@@ -129,96 +144,130 @@ const DonationSection = () => {
   };
 
   return (
-    <section className="donate-section" id="donate">
-      <div className="donate-bg-texts">
-        <h1 className="donate-bg-text-1">BACK THE GAME</h1>
-        <h1 className="donate-bg-text-2">STAY INDEPENDENT</h1>
-      </div>
+    <PayPalScriptProvider options={initialPayPalOptions}>
+      <section className="donate-section" id="donate">
+        <div className="donate-bg-texts">
+          <h1 className="donate-bg-text-1">BACK THE GAME</h1>
+          <h1 className="donate-bg-text-2">STAY INDEPENDENT</h1>
+        </div>
 
-      <div className="container mx-auto relative z-10">
-        <div className="donate-layout">
+        <div className="container mx-auto relative z-10">
+          <div className="donate-layout">
 
-          {/* Left — title */}
-          <div className="donate-left">
-            <div className="overflow-hidden">
-              <h1 className="donate-title">Support</h1>
-            </div>
-            <div className="overflow-hidden">
-              <h1 className="donate-title">The Dev</h1>
-            </div>
+            {/* Left — title */}
+            <div className="donate-left">
+              <div className="overflow-hidden">
+                <h1 className="donate-title">Support</h1>
+              </div>
+              <div className="overflow-hidden">
+                <h1 className="donate-title">The Dev</h1>
+              </div>
 
-            <div
-              style={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" }}
-              className="donate-wipe"
-            >
-              <div className="bg-[#2a1e18] md:pb-4 pb-2 md:pt-0 pt-1 md:px-5 px-3">
-                <h2 className="text-[#a89070]">One Time · No Account</h2>
+              <div
+                style={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" }}
+                className="donate-wipe"
+              >
+                <div className="bg-[#2a1e18] md:pb-4 pb-2 md:pt-0 pt-1 md:px-5 px-3">
+                  <h2 className="text-[#a89070]">One Time · No Account</h2>
+                </div>
+              </div>
+
+              <div className="overflow-hidden md:mt-12 mt-8 max-w-xs">
+                <p className="donate-paragraph font-paragraph text-[#a89070] text-base leading-relaxed">
+                  Every dollar goes directly into props, voice servers, and keeping The Fake 100% indie.
+                </p>
               </div>
             </div>
 
-            <div className="overflow-hidden md:mt-12 mt-8 max-w-xs">
-              <p className="donate-paragraph font-paragraph text-[#a89070] text-base leading-relaxed">
-                Every dollar goes directly into props, voice servers, and keeping The Fake 100% indie.
-              </p>
-            </div>
-          </div>
+            {/* Right — 2×2 card grid + CTA button at the bottom */}
+            <div className="donate-right">
+              <div className="donate-cards-grid">
+                {tiers.map((tier, i) => {
+                  const isActive = active === i;
+                  return (
+                    <div
+                      key={i}
+                      ref={(el) => (cardsRef.current[i] = el)}
+                      onClick={() => handleCardClick(i)}
+                      onMouseEnter={() => handleCardMouseEnter(i)}
+                      onMouseLeave={() => handleCardMouseLeave(i)}
+                      className={`donate-card ${isActive ? "is-active" : ""}`}
+                    >
+                      <div className="donate-card-top">
+                        <span className="donate-card-tag font-paragraph text-[11px] uppercase tracking-[.25em] text-[#8c7d75]">
+                          Tier {String(i + 1).padStart(2, "0")}
+                        </span>
 
-          {/* Right — 2×2 card grid */}
-          <div className="donate-cards-grid">
-            {tiers.map((tier, i) => {
-              const isActive = active === i;
-              return (
-                <div
-                  key={i}
-                  ref={(el) => (cardsRef.current[i] = el)}
-                  onClick={() => handleCardClick(i)}
-                  onMouseEnter={() => handleCardMouseEnter(i)}
-                  onMouseLeave={() => handleCardMouseLeave(i)}
-                  className={`donate-card ${isActive ? "is-active" : ""}`}
-                >
-                  <div className="donate-card-top">
-                    <span className="donate-card-tag font-paragraph text-[11px] uppercase tracking-[.25em] text-[#8c7d75]">
-                      Tier {String(i + 1).padStart(2, "0")}
-                    </span>
-
-                    {tier.isCustom ? (
-                      <div
-                        className="donate-custom-wrapper"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <span className="text-[#a89070] font-sans font-bold text-xl mr-1">$</span>
-                        <input
-                          type="number"
-                          min="1"
-                          value={customAmount}
-                          onChange={(e) => setCustomAmount(e.target.value)}
-                          className="donate-custom-input font-sans font-bold text-milk text-2xl md:text-3xl"
-                          placeholder="50"
-                        />
+                        {tier.isCustom ? (
+                          <div
+                            className="donate-custom-wrapper"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <span className="text-[#a89070] font-sans font-bold text-xl mr-1">$</span>
+                            <input
+                              type="number"
+                              min="1"
+                              value={customAmount}
+                              onChange={(e) => setCustomAmount(e.target.value)}
+                              className="donate-custom-input font-sans font-bold text-milk text-2xl md:text-3xl"
+                              placeholder="50"
+                            />
+                          </div>
+                        ) : (
+                          <span className="donate-card-amount font-sans font-bold text-milk">
+                            {tier.amount}
+                          </span>
+                        )}
                       </div>
-                    ) : (
-                      <span className="donate-card-amount font-sans font-bold text-milk">
-                        {tier.amount}
-                      </span>
-                    )}
-                  </div>
 
-                  <div className="donate-card-bottom">
-                    <h3 className="donate-card-label font-sans font-bold uppercase text-milk tracking-tight">
-                      {tier.label}
-                    </h3>
-                    <p className="donate-card-desc font-paragraph text-[#8c7d75] text-xs leading-relaxed">
-                      {tier.desc}
-                    </p>
-                  </div>
+                      <div className="donate-card-bottom">
+                        <h3 className="donate-card-label font-sans font-bold uppercase text-milk tracking-tight">
+                          {tier.label}
+                        </h3>
+                        <p className="donate-card-desc font-paragraph text-[#8c7d75] text-xs leading-relaxed">
+                          {tier.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* PayPal Donate CTA Button Bottom of 4 Cards */}
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="w-full py-4 px-6 rounded-2xl bg-[#1e1210] hover:bg-[#2a1e18] border-[.35vw] border-[#0f0d0e] text-milk font-sans font-bold uppercase text-sm md:text-base tracking-wider flex items-center justify-between transition-all duration-300 active:scale-[0.99] cursor-pointer shadow-lg group"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-[#a89070] text-xs font-paragraph uppercase tracking-widest">
+                    Donate:
+                  </span>
+                  <span>{currentTier.label}</span>
                 </div>
-              );
-            })}
-          </div>
 
+                <div className="flex items-center gap-3">
+                  <span className="text-milk font-bold text-lg md:text-xl">
+                    {currentTier.isCustom ? `$${customAmount || 50}` : currentTier.amount}
+                  </span>
+                  <span className="bg-[#2a1e18] group-hover:bg-[#3d2820] border border-[#0f0d0e] px-4 py-1.5 rounded-full text-xs text-[#a89070] group-hover:text-milk flex items-center gap-1.5 transition-colors">
+                    PayPal <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                  </span>
+                </div>
+              </button>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </section>
+
+        {/* Compact PayPal Checkout Modal */}
+        <PayPalModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          amount={currentAmount}
+          tierLabel={currentTier.label}
+        />
+      </section>
+    </PayPalScriptProvider>
   );
 };
 
