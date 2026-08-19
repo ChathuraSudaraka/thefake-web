@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 const PayPalModal = ({ isOpen, onClose, amount, tierLabel }) => {
@@ -13,10 +14,26 @@ const PayPalModal = ({ isOpen, onClose, amount, tierLabel }) => {
     if (isOpen) {
       setErrorMessage("");
       setPaymentSuccess(null);
-    }
-  }, [isOpen]);
 
-  if (!isOpen) return null;
+      // Lock background scrolling while modal is open
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+          onClose();
+        }
+      };
+
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isOpen, onClose]);
+
+  if (!isOpen || typeof document === "undefined") return null;
 
   const handleCreateOrder = (data, actions) => {
     setErrorMessage("");
@@ -49,12 +66,12 @@ const PayPalModal = ({ isOpen, onClose, amount, tierLabel }) => {
     setErrorMessage("PayPal encountered an error. Please verify your connection or PayPal account.");
   };
 
-  return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300">
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300">
       {/* Click outside to close */}
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="relative z-10 bg-[#160e0c] border border-[#33221b] rounded-2xl w-full max-w-md p-6 shadow-2xl overflow-hidden flex flex-col gap-4">
+      <div className="relative z-10 bg-[#160e0c] border border-[#33221b] rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 shadow-2xl flex flex-col gap-4">
         {/* Header */}
         <div className="flex justify-between items-center border-b border-[#2a1e18] pb-3">
           <div className="flex flex-col">
@@ -67,6 +84,7 @@ const PayPalModal = ({ isOpen, onClose, amount, tierLabel }) => {
           </div>
           <button
             onClick={onClose}
+            aria-label="Close modal"
             className="w-8 h-8 rounded-full bg-[#241714] hover:bg-[#33201b] text-[#a89070] hover:text-milk flex items-center justify-center text-sm transition-colors cursor-pointer"
           >
             ✕
@@ -158,7 +176,8 @@ const PayPalModal = ({ isOpen, onClose, amount, tierLabel }) => {
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
