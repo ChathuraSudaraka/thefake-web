@@ -81,7 +81,7 @@ const HeroSection = () => {
 
         <div className="hero-content opacity-0">
           <div className="overflow-hidden">
-            <h1 className="hero-title">The Fake</h1>
+            <h1 className="hero-title"><span className="normal-case">TheFakes</span></h1>
           </div>
           <div
             style={{

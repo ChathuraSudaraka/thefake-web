@@ -49,7 +49,7 @@ const PayPalModal = ({ isOpen, onClose, amount, tierLabel, tierDesc, hostedButto
         <div className="flex justify-between items-center border-b border-[#2a1e18] pb-3">
           <div className="flex flex-col">
             <span className="text-[10px] font-paragraph uppercase tracking-[.25em] text-[#8c7d75]">
-              Backing The Fake
+              Backing <span className="normal-case">TheFakes</span>
             </span>
             <h3 className="font-sans font-bold text-milk text-lg uppercase tracking-tight">
               {tierLabel}
