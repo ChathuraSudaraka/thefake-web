@@ -17,7 +17,7 @@ const FooterSection = () => {
         <div className="flex-center mb-6 z-10 relative">
           <img
             src={`${import.meta.env.BASE_URL}images/footer-logo.png`}
-            alt="The Fake"
+            alt="TheFakes"
             className="md:h-20 h-14 object-contain opacity-90 hover:opacity-100 transition-opacity"
           />
         </div>
@@ -90,7 +90,7 @@ const FooterSection = () => {
         </div>
 
         <div className="copyright-box">
-          <p>Copyright © {new Date().getFullYear()} The Fake — All Rights Reserved</p>
+          <p>Copyright © {new Date().getFullYear()} TheFakes — All Rights Reserved</p>
           <div className="flex items-center gap-7">
             <p>Privacy Policy</p>
             <p>Terms of Service</p>

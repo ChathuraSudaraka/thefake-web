@@ -59,7 +59,7 @@ const GameplayTitle = () => {
       </div>
 
       <div className="overflow-hidden 2xl:py-0 py-3 second-text-split">
-        <h1>The Fake</h1>
+        <h1><span className="normal-case">TheFakes</span></h1>
       </div>
     </div>
   );

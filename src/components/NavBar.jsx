@@ -48,7 +48,7 @@ const NavBar = () => {
         style={{ letterSpacing: "-0.04em" }}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
-        The Fake
+        <span className="normal-case">TheFakes</span>
       </span>
 
       <button

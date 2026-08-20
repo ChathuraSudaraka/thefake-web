@@ -48,7 +48,7 @@ const FeaturesSection = () => {
         <div className="col-center">
           <p>
             The power behind the fear: <br />
-            What makes The Fake worth hiding for.
+            What makes TheFakes worth hiding for.
           </p>
 
           <div className="mt-20 col-center">

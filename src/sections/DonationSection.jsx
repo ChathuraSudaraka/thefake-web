@@ -2,22 +2,14 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useState, useRef } from "react";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import PayPalModal from "../components/PayPalModal";
 
 const tiers = [
-  { amount: "$5",  label: "Prop Fund",    desc: "Adds 10 hauntable objects to the map." },
-  { amount: "$10", label: "Voice Node",   desc: "Runs proximity chat servers for one month." },
-  { amount: "$25", label: "Hunter Pack",  desc: "Exclusive skin + permanent Discord role." },
-  { isCustom: true, label: "Custom Tier", desc: "Choose your own support amount." },
+  { amount: "$5",  label: "DEV SURVIVAL KOTTU",    desc: "For $5, you upgrade our standard survival rations to a glorious cheese kottu. No in-game perks, just two very happy, well-fed indie devs.", hostedButtonId: "58UPFE78JUKRW" },
+  { amount: "$10", label: "DISCORD POLTERGEIST",   desc: "Snag an exclusive \"Early Supporter\" colored role in our Discord server to haunt the general chat.", hostedButtonId: "TZA89WW26J6V2" },
+  { amount: "$25", label: "IMMORTALIZED IN TEXT",  desc: "Your name gets permanently slapped into the \"Special Thanks\" section of the game’s end credits screen.", hostedButtonId: "UKTV8HC7VMHRL" },
+  { isCustom: true, label: "THE REAL JUMPSCARE", desc: "Choose your amount. Help protect us from the greatest, most terrifying horror of indie game development: checking our bank account after platform fees take their cut.", hostedButtonId: "E8Y5BWVKJ9YW4" },
 ];
-
-const initialPayPalOptions = {
-  clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID || "test",
-  currency: import.meta.env.VITE_PAYPAL_CURRENCY || "USD",
-  intent: "capture",
-  components: "buttons",
-};
 
 const DonationSection = () => {
   const [active, setActive]           = useState(1);
@@ -144,7 +136,7 @@ const DonationSection = () => {
   };
 
   return (
-    <PayPalScriptProvider options={initialPayPalOptions}>
+    <>
       <section className="donate-section" id="donate">
         <div className="donate-bg-texts">
           <h1 className="donate-bg-text-1">BACK THE GAME</h1>
@@ -174,7 +166,7 @@ const DonationSection = () => {
 
               <div className="overflow-hidden md:mt-12 mt-8 max-w-xs">
                 <p className="donate-paragraph font-paragraph text-[#a89070] text-base leading-relaxed">
-                  Every dollar goes directly into props, voice servers, and keeping The Fake 100% indie.
+                  Every dollar goes directly into keeping the lights on, funding our caffeine dependencies, and ensuring TheFakes stays 100% independent.
                 </p>
               </div>
             </div>
@@ -224,7 +216,7 @@ const DonationSection = () => {
                         <h3 className="donate-card-label font-sans font-bold uppercase text-milk tracking-tight">
                           {tier.label}
                         </h3>
-                        <p className="donate-card-desc font-paragraph text-[#8c7d75] text-xs leading-relaxed">
+                        <p className="donate-card-desc font-paragraph text-[#8c7d75] text-xs leading-relaxed line-clamp-2">
                           {tier.desc}
                         </p>
                       </div>
@@ -265,9 +257,11 @@ const DonationSection = () => {
           onClose={() => setIsModalOpen(false)}
           amount={currentAmount}
           tierLabel={currentTier.label}
+          tierDesc={currentTier.desc}
+          hostedButtonId={currentTier.hostedButtonId}
         />
       </section>
-    </PayPalScriptProvider>
+    </>
   );
 };
 

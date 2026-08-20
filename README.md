@@ -1,6 +1,6 @@
-# The Fake — Horror Coop Prop Hunt Experience
+# TheFakes — Horror Coop Prop Hunt Experience
 
-An immersive, award-winning-caliber web experience built for **"The Fake"** — a horror coop prop hunt game where ghosts hide as everyday objects, hunters track by sound, and voice proximity chat betrays every breath.
+An immersive, award-winning-caliber web experience built for **"TheFakes"** — a horror coop prop hunt game where ghosts hide as everyday objects, hunters track by sound, and voice proximity chat betrays every breath.
 
 Powered by **React 19**, **GSAP (ScrollTrigger & SplitText)**, **Vite**, and **Tailwind CSS 4**.
 
@@ -8,7 +8,7 @@ Powered by **React 19**, **GSAP (ScrollTrigger & SplitText)**, **Vite**, and **T
 
 ## 🎮 About The Game
 
-**The Fake** is an intense multiplayer horror experience powered by Unreal Engine 5:
+**TheFakes** is an intense multiplayer horror experience powered by Unreal Engine 5:
 - **Hide in Plain Sight**: Impersonate any prop in the haunted room with real-time physics.
 - **Proximity Chat Betrayal**: Every sound through your real microphone reveals your location to coop hunters.
 - **Dynamic Physics & Lighting**: High-fidelity UE5 horror atmosphere with procedural props.
